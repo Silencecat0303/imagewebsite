@@ -1,0 +1,54 @@
+<style>
+    body{
+        margin:0;
+    }
+</style>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<div style="width:100vw;height:100vh;background:url(img/forfun/bg-01.jpg);position:fixed;top:0px" id="bg-image"></div>
+<div style="width:100vw;height:100vh;position:relative;text-align:center;padding:100px">
+    <button class="btn btn-light rounded-circle btn-lg" id="downto">▼</button>
+</div>
+<div style="width:100vw;height:100vh;background:white;position:relative;text-align:center">
+    <h1 style="padding:50px 0;font-size:50px">Step.1</h1>
+</div>
+<div style="width:100vw;height:100vh;position:relative;text-align:center"></div>
+<div style="width:100vw;height:100vh;background:white;position:relative;text-align:center">
+    <h1 style="padding:50px 0;font-size:50px">Step.2</h1>
+</div>
+<div style="width:100vw;height:100vh;position:relative;text-align:center"></div>
+<div style="width:100vw;height:100vh;background:white;position:relative;text-align:center">
+    <h1 style="padding:50px 0;font-size:50px">Step.3</h1>
+    <button class="btn btn-dark rounded-circle btn-lg" id="upto" style="display:none">▲</button>
+</div>
+<script src="js/jquery.js"></script>
+<script>
+    let screenHeight,scrollHeight;
+$(document).scroll(function(){
+    screenHeight=$(window).outerHeight(true);
+    scrollHeight=$(this).scrollTop();
+    if(scrollHeight<screenHeight){
+        $("#bg-image").css("background","url(img/bg-01.jpg)");
+    }
+    if(scrollHeight>=screenHeight+30){
+        $("#bg-image").css("background","url(img/bg-02.jpg)");
+    }
+    if(scrollHeight>=3*screenHeight+30){
+        $("#bg-image").css("background","url(img/bg-03.jpg)");
+    }
+    if(scrollHeight>=5*screenHeight){
+        $("#upto").css("display","inline-block");
+    }else{
+        $("#upto").css("display","none");
+    }
+});
+$("#downto").on("click",function(){
+    $("body").animate({
+        scrollTop:"789px"
+    },400);    
+});
+$("#upto").on("click",function(){
+    $("body").animate({
+        scrollTop:"0px"
+    },400);
+});
+</script>
