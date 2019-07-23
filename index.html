@@ -2,6 +2,13 @@
     body{
         margin:0;
     }
+    .openandclose{
+        transition:transform .2s;
+        transform:scale(0);
+        width:300px;
+        margin:20px auto;
+        padding:5px 20px;
+    }
 </style>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <div style="width:100vw;height:100vh;background:url(img/forfun/bg-01.jpg);position:fixed;top:0px" id="bg-image"></div>
@@ -9,7 +16,16 @@
     <button class="btn btn-light rounded-circle btn-lg" id="downto">▼</button>
 </div>
 <div style="width:100vw;height:100vh;background:white;position:relative;text-align:center">
-    <h1 style="padding:50px 0;font-size:50px">Step.1</h1>
+    <h1 style="padding:50px 0;font-size:50px">Step.1 收合清單</h1>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 1</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 2</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 3</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 4</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 5</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 6</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 7</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 8</p>
+    <p class='openandclose bg-primary rounded text-white' >Lesson 9</p>
 </div>
 <div style="width:100vw;height:100vh;position:relative;text-align:center"></div>
 <div style="width:100vw;height:100vh;background:white;position:relative;text-align:center">
@@ -22,24 +38,40 @@
 </div>
 <script src="js/jquery.js"></script>
 <script>
-    let screenHeight,scrollHeight;
+    let screenHeight,scrollHeight,pHeight,pEach;
+    pEach=$(".openandclose").each(function(){});
+    pHeight=new Array;
+    for(let i=0;i<pEach.length;i++){
+        pHeight[i]=$(".openandclose").eq(i).offset().top;
+    }
 $(document).scroll(function(){
     screenHeight=$(window).outerHeight(true);
     scrollHeight=$(this).scrollTop();
     if(scrollHeight<screenHeight){
-        $("#bg-image").css("background","url(img/bg-01.jpg)");
+        $("#bg-image").css("background","url(img/forfun/bg-01.jpg)");
     }
     if(scrollHeight>=screenHeight+30){
-        $("#bg-image").css("background","url(img/bg-02.jpg)");
+        $("#bg-image").css("background","url(img/forfun/bg-02.jpg)");
     }
     if(scrollHeight>=3*screenHeight+30){
-        $("#bg-image").css("background","url(img/bg-03.jpg)");
+        $("#bg-image").css("background","url(img/forfun/bg-03.jpg)");
     }
     if(scrollHeight>=5*screenHeight){
         $("#upto").css("display","inline-block");
     }else{
         $("#upto").css("display","none");
     }
+    $(".openandclose").each(function(){
+        if((scrollHeight<screenHeight && scrollHeight+screenHeight>=$(this).offset().top+100) || (scrollHeight>screenHeight && scrollHeight<$(this).offset().top-50)){
+            $(this).css({
+                "transform":"scaleX(1)","transition-timing-function":"cubic-bezier(.62,1.93,.59,.66)"
+            });
+        }else{
+            $(this).css({
+                "transform":"scaleX(0)","transition-timing-function":"linear"
+            });
+        }
+    });
 });
 $("#downto").on("click",function(){
     $("body").animate({
