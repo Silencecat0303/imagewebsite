@@ -11,7 +11,7 @@
     }
 </style>
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<div style="width:100vw;height:100vh;background:url(img/forfun/bg-01.jpg);position:fixed;top:0px" id="bg-image"></div>
+<div style="width:100vw;height:100vh;background:url(img/bg-01.jpg);position:fixed;top:0px" id="bg-image"></div>
 <div style="width:100vw;height:100vh;position:relative;text-align:center;padding:100px">
     <button class="btn btn-light rounded-circle btn-lg" id="downto">▼</button>
 </div>
@@ -48,13 +48,13 @@ $(document).scroll(function(){
     screenHeight=$(window).outerHeight(true);
     scrollHeight=$(this).scrollTop();
     if(scrollHeight<screenHeight){
-        $("#bg-image").css("background","url(img/forfun/bg-01.jpg)");
+        $("#bg-image").css("background","url(img/bg-01.jpg)");
     }
     if(scrollHeight>=screenHeight+30){
-        $("#bg-image").css("background","url(img/forfun/bg-02.jpg)");
+        $("#bg-image").css("background","url(img/bg-02.jpg)");
     }
     if(scrollHeight>=3*screenHeight+30){
-        $("#bg-image").css("background","url(img/forfun/bg-03.jpg)");
+        $("#bg-image").css("background","url(img/bg-03.jpg)");
     }
     if(scrollHeight>=5*screenHeight){
         $("#upto").css("display","inline-block");
