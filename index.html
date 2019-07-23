@@ -62,7 +62,7 @@ $(document).scroll(function(){
         $("#upto").css("display","none");
     }
     $(".openandclose").each(function(){
-        if((scrollHeight<screenHeight && scrollHeight+screenHeight>=$(this).offset().top+100) || (scrollHeight>screenHeight && scrollHeight<$(this).offset().top-50)){
+        if((scrollHeight<=screenHeight && scrollHeight+screenHeight>=$(this).offset().top+100) || (scrollHeight>screenHeight && scrollHeight<$(this).offset().top-50)){
             $(this).css({
                 "transform":"scaleX(1)","transition-timing-function":"cubic-bezier(.62,1.93,.59,.66)"
             });
