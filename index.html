@@ -44,6 +44,7 @@
     for(let i=0;i<pEach.length;i++){
         pHeight[i]=$(".openandclose").eq(i).offset().top;
     }
+    let x=0;
 $(document).scroll(function(){
     screenHeight=$(window).outerHeight(true);
     scrollHeight=$(this).scrollTop();
@@ -72,6 +73,16 @@ $(document).scroll(function(){
             });
         }
     });
+    if(scrollHeight>789 && scrollHeight<2367 && x==0){
+        $("body").animate({
+            scrollTop:"1578px"
+        },1000);
+        x=1;
+    }
+    setTimeout(function(){
+        $("body").finish();
+    },1500)
+    setTimeout(function(){x=0;},3000);
 });
 $("#downto").on("click",function(){
     $("body").animate({
