@@ -44,7 +44,7 @@
     for(let i=0;i<pEach.length;i++){
         pHeight[i]=$(".openandclose").eq(i).offset().top;
     }
-    let x=0;
+    let second;
 $(document).scroll(function(){
     screenHeight=$(window).outerHeight(true);
     scrollHeight=$(this).scrollTop();
@@ -73,15 +73,15 @@ $(document).scroll(function(){
             });
         }
     });
-    if(scrollHeight>789 && scrollHeight<2367 && x==0){
-        $("body").animate({
-            scrollTop:"1578px"
-        },1000);
-        x=1;
+    let time=new Date;
+    if(second+2<time.getSeconds()||!second){
+        if(scrollHeight>screenHeight && scrollHeight<3*screenHeight){
+            $("body").animate({
+                scrollTop:2*screenHeight
+            },1000);
+            second=time.getSeconds();
+        }
     }
-    setTimeout(function(){
-        $("body").finish();
-    },1500)
     setTimeout(function(){x=0;},3000);
 });
 $("#downto").on("click",function(){
